@@ -1,0 +1,10 @@
+---
+
+- name: Ensure Powerline Fonts are installed on OSX.
+  block:
+    - name: Installing Dependencies - Nerd Font Fira Code for Powerline.
+      community.general.homebrew:
+        name: font-fira-mono-for-powerline
+        state: present
+      when: ansible_system == "Darwin"
+      ignore_errors: yes

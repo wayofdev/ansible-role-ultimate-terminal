@@ -1,0 +1,41 @@
+---
+
+- name: Establish install location.
+  ansible.builtin.set_fact:
+    omz_install_path: "/{{ zsh_user_home_dir }}/{{ remote_regular_user }}/{{ omz_install_directory }}"
+
+- name: Derive user .zshrc path.
+  ansible.builtin.set_fact:
+    zsh_user_zshrc_path: "/{{ zsh_user_home_dir }}/{{ remote_regular_user }}/.zshrc"
+
+- name: Clone Oh My ZSH repo for user.
+  ansible.builtin.git:
+    repo: "{{ omz_git_repository }}"
+    dest: "{{ omz_install_path }}"
+    update: true
+    accept_hostkey: true
+    version: "master"
+  register: oh_my_zsh_clone
+
+# - name: Downloading OhMyZsh.
+#   ansible.builtin.command: 'git clone -c core.autocrlf=input --depth=1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh'
+#   args:
+#     chdir: '~'
+#     creates: '~/.oh-my-zsh'
+
+- name: Generating .zshrc from Template.
+  ansible.builtin.template:
+    src: zshrc.j2
+    dest: "{{ zsh_user_zshrc_path }}"
+    backup: true
+    mode: 'u=rw,go=r'
+    owner: "{{ remote_regular_user }}"
+
+- name: Export vars into .zshrc if Required.
+  ansible.builtin.blockinfile:
+    dest: "{{ zsh_user_zshrc_path }}"
+    block: "{{ omz_zshrc_user_settings }}"
+    backup: "{{ omz_do_zshrc_backup }}"
+  when:
+    - omz_zshrc_user_settings is defined
+    - omz_zshrc_user_settings != ''

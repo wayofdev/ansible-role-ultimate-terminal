@@ -1,0 +1,36 @@
+---
+
+- name: Installing Iterm2.
+  community.general.homebrew:
+    name: iterm2
+    state: present
+  when: ansible_system == "Darwin"
+  ignore_errors: true
+
+- name: Ensure that iTerm2 DynamicProfiles directory exists.
+  ansible.builtin.file:
+    path: "{{ iterm2_profile_directory }}"
+    state: directory
+    mode: '0755'
+    owner: "{{ remote_regular_user }}"
+
+- name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
+  uri:
+    url: "{{ item.url }}"
+    dest:  "{{ iterm2_profile_directory }}"
+  with_items: "{{ iterm2_dynamic_profiles }}"
+  when: iterm2_dynamic_profiles is defined
+
+# iTerm2 will need to be restarted for preference changes to kick in.
+- name: Ensure preferences are loaded from a custom folder.
+  ansible.builtin.command: "{{ item }}"
+  with_items:
+    - "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_profile_directory }}'"
+    - "defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true"
+  when: iterm2_profile_directory is defined and iterm2_profile_directory
+
+- name: Ensure shell integration is installed.
+  ansible.builtin.shell: curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
+  args:
+    warn: no
+  when: iterm2_shell_integration is defined and iterm2_shell_integration
