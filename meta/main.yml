@@ -2,7 +2,7 @@
 
 galaxy_info:
   role_name: ultimate-terminal
-  author: wayofdev
+  author: lotyp
   description: Iterm2.app ➞ Zsh ➞ OhMyZsh ➞ Spaceship theme ➞ Plugins
   company: wayofdev
 
@@ -11,10 +11,10 @@ galaxy_info:
   min_ansible_version: 2.6
 
   platforms:
-    - name: MacOSX
+    - name: macOS
       versions:
-        - '11.*'
-        - '12.*'
+        - "Big-Sur"
+        - "Monterey"
 
   galaxy_tags:
     - 'iterm2'
