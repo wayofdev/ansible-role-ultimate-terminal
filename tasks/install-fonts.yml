@@ -11,5 +11,6 @@
       community.general.homebrew:
         name: font-fira-mono-for-powerline
         state: present
+        update_homebrew: true
       when: ansible_system == "Darwin"
       ignore_errors: true

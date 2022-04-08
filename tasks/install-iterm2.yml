@@ -4,6 +4,7 @@
   community.general.homebrew:
     name: iterm2
     state: present
+    update_homebrew: true
   when: ansible_system == "Darwin"
   ignore_errors: true
 
@@ -15,9 +16,9 @@
     owner: "{{ remote_regular_user }}"
 
 - name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
-  uri:
+  ansible.builtin.uri:
     url: "{{ item.url }}"
-    dest:  "{{ iterm2_profile_directory }}"
+    dest: "{{ iterm2_profile_directory }}"
   with_items: "{{ iterm2_dynamic_profiles }}"
   when: iterm2_dynamic_profiles is defined
 
@@ -32,5 +33,5 @@
 - name: Ensure shell integration is installed.
   ansible.builtin.shell: curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
   args:
-    warn: no
+    warn: false
   when: iterm2_shell_integration is defined and iterm2_shell_integration
