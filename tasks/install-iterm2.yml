@@ -4,7 +4,6 @@
   community.general.homebrew:
     name: iterm2
     state: present
-    update_homebrew: true
   when: ansible_system == "Darwin"
   ignore_errors: true
 
