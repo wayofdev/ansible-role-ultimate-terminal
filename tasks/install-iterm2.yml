@@ -1,7 +1,7 @@
 ---
 
 - name: Installing Iterm2.
-  community.general.homebrew:
+  community.general.homebrew_cask:
     name: iterm2
     state: installed
   when: ansible_system == "Darwin"
