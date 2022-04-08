@@ -14,7 +14,7 @@
     - name: Install zsh for macOS.
       community.general.homebrew:
         name: zsh
-        state: present
+        state: installed
         update_homebrew: true
       when: ansible_system == "Darwin"
 

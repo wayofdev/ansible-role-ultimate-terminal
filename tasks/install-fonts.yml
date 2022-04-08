@@ -10,6 +10,6 @@
     - name: Installing Dependencies - Nerd Font Fira Code for Powerline.
       community.general.homebrew:
         name: font-fira-mono-for-powerline
-        state: present
+        state: installed
       when: ansible_system == "Darwin"
       ignore_errors: true
