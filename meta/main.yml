@@ -1,7 +1,7 @@
 ---
 
 galaxy_info:
-  role_name: ultimate-terminal
+  role_name: terminal
   author: lotyp
   description: Iterm2.app ➞ Zsh ➞ OhMyZsh ➞ Spaceship theme ➞ Plugins
   company: wayofdev
