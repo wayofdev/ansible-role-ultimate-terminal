@@ -85,4 +85,4 @@ jobs:
         uses: robertdebock/galaxy-action@1.1.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
-          path: wayofdev
+
