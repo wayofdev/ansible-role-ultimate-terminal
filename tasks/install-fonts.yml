@@ -1,5 +1,10 @@
 ---
 
+- name: Tap a Homebrew repository, for fonts on OSX
+  community.general.homebrew_tap:
+    name: homebrew/cask-fonts
+  when: ansible_system == "Darwin"
+
 - name: Ensure Powerline Fonts are installed on OSX.
   block:
     - name: Installing Dependencies - Nerd Font Fira Code for Powerline.
@@ -7,4 +12,4 @@
         name: font-fira-mono-for-powerline
         state: present
       when: ansible_system == "Darwin"
-      ignore_errors: yes
+      ignore_errors: true
