@@ -8,13 +8,13 @@
     - name: Install zsh for Linux.
       ansible.builtin.package:
         name: "zsh"
-        state: present
+        state: latest
       when: ansible_system == "Linux"
 
     - name: Install zsh for macOS.
       community.general.homebrew:
         name: zsh
-        state: installed
+        state: latest
         update_homebrew: true
       when: ansible_system == "Darwin"
 
