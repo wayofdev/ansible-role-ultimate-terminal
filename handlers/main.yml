@@ -32,4 +32,4 @@
     accept_hostkey: true
     version: "master"
   listen: Install Custom OMZ Plugins
-  when: "'zsh-autosuggestions' in '{{ omz_zshrc_user_settings }}'"
+  when: "'zsh-autosuggestions' in omz_zshrc_user_settings"
