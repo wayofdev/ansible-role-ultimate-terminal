@@ -23,3 +23,13 @@
       curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
   listen: Integrate Shell
   when: iterm2_shell_integration is defined and iterm2_shell_integration
+
+- name: Install Fish-like autosuggestions for zsh
+  ansible.builtin.git:
+    repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
+    dest: "{{ omz_custom_path }}/plugins/zsh-autosuggestions"
+    update: true
+    accept_hostkey: true
+    version: "master"
+  listen: Install Custom OMZ Plugins
+  when: '"zsh-autosuggestions" in omz_zshrc_user_settings'

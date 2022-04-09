@@ -25,6 +25,7 @@ omz_zshrc_zsh_custom: "$ZSH/custom"
 
 omz_zshrc_plugins:
   - git
+  - zsh-autosuggestions
 
 omz_zshrc_user_settings: |
   source ~/.zsh_menu 2> /dev/null || true

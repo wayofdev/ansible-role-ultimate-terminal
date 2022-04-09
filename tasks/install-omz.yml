@@ -15,7 +15,8 @@
     update: true
     accept_hostkey: true
     version: "master"
-  register: oh_my_zsh_clone
+  notify:
+    - Install Custom OMZ Plugins
 
 - name: Generating .zshrc from Template.
   ansible.builtin.template:
