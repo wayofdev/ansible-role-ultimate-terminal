@@ -1,1 +1,25 @@
 ---
+
+- name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
+  ansible.builtin.uri:
+    url: "{{ item.url }}"
+    dest: "{{ iterm2_profile_directory }}"
+  with_items: "{{ iterm2_dynamic_profiles }}"
+  listen: Install DynamicRole
+  when: iterm2_dynamic_profiles is defined
+
+# iTerm2 will need to be restarted for preference changes to kick in.
+- name: Ensure preferences are loaded from a custom folder.
+  ansible.builtin.command: "{{ item }}"
+  with_items:
+    - "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_profile_directory }}'"
+    - "defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true"
+  listen: Install DynamicRole
+  when: iterm2_profile_directory is defined and iterm2_profile_directory
+
+- name: Ensure shell integration is installed.
+  ansible.builtin.shell: >
+    set -o pipefail && \
+      curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
+  listen: Integrate Shell
+  when: iterm2_shell_integration is defined and iterm2_shell_integration

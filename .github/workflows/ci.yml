@@ -72,6 +72,17 @@ jobs:
         env:
           ANSIBLE_FORCE_COLOR: '1'
 
+      - name: Idempotence check.
+        run: |
+          idempotence=$(mktemp)
+          ansible-playbook tests/test.yml | tee -a ${idempotence}
+          tail ${idempotence} \
+            | grep -q 'changed=0.*failed=0' \
+            && (echo 'Idempotence test: pass' && exit 0) \
+            || (echo 'Idempotence test: fail' && exit 1)
+        env:
+          ANSIBLE_FORCE_COLOR: '1'
+
   publish:
     if: github.event.inputs.shouldPublishImage == 'yes' || github.ref == 'refs/heads/master'
     needs:
@@ -85,4 +96,3 @@ jobs:
         uses: robertdebock/galaxy-action@1.1.1
         with:
           galaxy_api_key: ${{ secrets.GALAXY_API_KEY }}
-          git_branch: master

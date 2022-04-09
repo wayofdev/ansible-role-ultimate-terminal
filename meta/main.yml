@@ -14,7 +14,6 @@ galaxy_info:
     - name: macOS
       versions:
         - "Big-Sur"
-        - "Monterey"
 
   galaxy_tags:
     - 'iterm2'

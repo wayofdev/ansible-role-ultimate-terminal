@@ -17,17 +17,11 @@
     version: "master"
   register: oh_my_zsh_clone
 
-# - name: Downloading OhMyZsh.
-#   ansible.builtin.command: 'git clone -c core.autocrlf=input --depth=1 https://github.com/ohmyzsh/ohmyzsh .oh-my-zsh'
-#   args:
-#     chdir: '~'
-#     creates: '~/.oh-my-zsh'
-
 - name: Generating .zshrc from Template.
   ansible.builtin.template:
     src: zshrc.j2
     dest: "{{ zsh_user_zshrc_path }}"
-    backup: true
+    force: false
     mode: 'u=rw,go=r'
     owner: "{{ remote_regular_user }}"
 
