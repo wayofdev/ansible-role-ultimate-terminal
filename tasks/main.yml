@@ -4,32 +4,23 @@
 - include_tasks: zsh.yml
   tags:
     - zsh
-    - configure
-    - configurezsh
 
 # Install Iterm2 if system is OSX.
 - include_tasks: install-iterm2.yml
   tags:
     - iterm2
-    - installiterm2
 
 # Install Powerline Fonts.
 - include_tasks: install-fonts.yml
   tags:
     - fonts
-    - powerlinefonts
-    - installfonts
 
 # Install oh-my-zsh.
 - include_tasks: install-omz.yml
   tags:
-    - oh-my-zsh
-    - installohmyzsh
+    - omz
 
 # Install Spaceship Theme.
 - include_tasks: install-spaceship.yml
   tags:
     - spaceship
-    - installspaceship
-    - spaceshipohmyzsh
-    - spaceshipprompt
