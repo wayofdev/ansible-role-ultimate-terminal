@@ -1,9 +1,9 @@
 ---
-- name: Establish home directory.
+- name: Zsh - Establish home directory.
   ansible.builtin.set_fact:
     zsh_user_home_dir: "{{ (ansible_system == 'Darwin') | ternary('Users', 'home') }}"
 
-- name: Ensure zsh is installed.
+- name: Zsh - Ensure package is installed.
   block:
     - name: Install zsh for Linux.
       ansible.builtin.package:
@@ -18,12 +18,12 @@
         update_homebrew: true
       when: ansible_system == "Darwin"
 
-- name: Get zsh installed path.
+- name: Zsh - Locate binary path.
   ansible.builtin.command: "which zsh"
   register: zsh_installed_path
   changed_when: false
 
-- name: Set user shell to zsh.
+- name: Zsh - Set user shell to zsh.
   ansible.builtin.user:
     name: "{{ remote_regular_user }}"
     shell: "{{ zsh_installed_path.stdout }}"

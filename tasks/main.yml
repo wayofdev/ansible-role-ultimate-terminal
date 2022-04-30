@@ -5,7 +5,7 @@
   tags:
     - zsh
 
-# Install Iterm2 if system is OSX.
+# Install iTerm2 if system is macOS.
 - include_tasks: install-iterm2.yml
   tags:
     - iterm2

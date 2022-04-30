@@ -1,30 +1,42 @@
 ---
 
-- name: Ensure external DynamicProfiles are downloaded to iTerm2 directory.
+- name: DR Handler - Ensure external DynamicProfiles are downloaded to iTerm2 directory.
   ansible.builtin.uri:
     url: "{{ item.url }}"
     dest: "{{ iterm2_profile_directory }}"
-  with_items: "{{ iterm2_dynamic_profiles }}"
+  with_items: "{{ iterm2.dynamic_profiles }}"
   listen: Install DynamicRole
-  when: iterm2_dynamic_profiles is defined
+  when: iterm2.dynamic_profiles is defined
 
-# iTerm2 will need to be restarted for preference changes to kick in.
-- name: Ensure preferences are loaded from a custom folder.
-  ansible.builtin.command: "{{ item }}"
-  with_items:
-    - "defaults write com.googlecode.iterm2 'PrefsCustomFolder' -string '{{ iterm2_profile_directory }}'"
-    - "defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder true"
+### iTerm2 will need to restart for preference changes to kick in.
+- name: iTerm2 - Allow DynamicProfiles to be loaded.
+  block:
+    - name: iTerm2 - Allowing to load DynamicProfiles from custom folders.
+      community.general.osx_defaults:
+        domain: com.googlecode.iterm2
+        key: LoadPrefsFromCustomFolder
+        type: bool
+        value: true
+        state: present
+
+    - name: iTerm2 - Setting directory "{{ iterm2_profile_directory }}" as source, from where DynamicProfiles will be loaded.
+      community.general.osx_defaults:
+        domain: com.googlecode.iterm2
+        key: PrefsCustomFolder
+        type: string
+        value: "{{ iterm2_profile_directory }}"
+        state: present
   listen: Install DynamicRole
   when: iterm2_profile_directory is defined and iterm2_profile_directory
 
-- name: Ensure shell integration is installed.
+- name: iTerm2 - Ensure shell integration is installed.
   ansible.builtin.shell: >
     set -o pipefail && \
       curl -L https://iterm2.com/shell_integration/install_shell_integration.sh | bash
   listen: Integrate Shell
-  when: iterm2_shell_integration is defined and iterm2_shell_integration
+  when: iterm2.shell_integration is defined and iterm2.shell_integration
 
-- name: Install Fish-like autosuggestions for zsh
+- name: iTerm2 - Plugins - Install Fish-like autosuggestions for zsh.
   ansible.builtin.git:
     repo: "https://github.com/zsh-users/zsh-autosuggestions.git"
     dest: "{{ omz_custom_path }}/plugins/zsh-autosuggestions"

@@ -12,41 +12,41 @@ DEFAULT_USER=`whoami`
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-ZSH_THEME="{{ omz_zshrc_theme }}"
+ZSH_THEME="{{ omz.zshrc.theme }}"
 
 # https://stackoverflow.com/questions/8433450/why-doesnt-my-condition-logic-work-as-expected-in-jinja2-cherrypy
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE={{ omz_zshrc_case_sensitive|upper }}
+# CASE_SENSITIVE={{ omz.zshrc.case_sensitive|upper }}
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE={{ omz_zshrc_hyphen_insensitive|upper }}
+# HYPHEN_INSENSITIVE={{ omz.zshrc.hyphen_insensitive|upper }}
 
-zstyle ':omz:update' mode {{ omz_zshrc_updates_mode }}
+zstyle ':omz:update' mode {{ omz.zshrc.updates_mode }}
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS={{ omz_zshrc_disable_magic_functions|upper }}
+# DISABLE_MAGIC_FUNCTIONS={{ omz.zshrc.disable_magic_functions|upper }}
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS={{ omz_zshrc_disable_ls_colors|upper }}
+# DISABLE_LS_COLORS={{ omz.zshrc.disable_ls_colors|upper }}
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE={{ omz_zshrc_disable_auto_title|upper }}
+# DISABLE_AUTO_TITLE={{ omz.zshrc.disable_auto_title|upper }}
 
 # Uncomment the following line to enable command autocorrection.
-# ENABLE_CORRECTION={{ omz_zshrc_enable_correction|upper }}
+# ENABLE_CORRECTION={{ omz.zshrc.enable_correction|upper }}
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-# COMPLETION_WAITING_DOTS={{ omz_zshrc_completion_waiting_dots|upper }}
+# COMPLETION_WAITING_DOTS={{ omz.zshrc.completion_waiting_dots|upper }}
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY={{ omz_zshrc_disable_untracked_files_dirty|upper }}
+# DISABLE_UNTRACKED_FILES_DIRTY={{ omz.zshrc.disable_untracked_files_dirty|upper }}
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -54,14 +54,14 @@ zstyle ':omz:update' mode {{ omz_zshrc_updates_mode }}
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="{{ omz_zshrc_hist_stamps }}"
+# HIST_STAMPS="{{ omz.zshrc.hist_stamps }}"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM={{ omz_zshrc_zsh_custom }}
+# ZSH_CUSTOM={{ omz.zshrc.zsh_custom }}
 
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Add wisely, as too many plugins slow down shell startup.
-plugins=({{ omz_zshrc_plugins | join(" ") }})
+plugins=({{ omz.zshrc.plugins | join(" ") }})
 
 source $ZSH/oh-my-zsh.sh

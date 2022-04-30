@@ -1,11 +1,11 @@
 ---
 
-- name: Tap a Homebrew repository, for fonts on OSX
+- name: Fonts - Tap a Homebrew repository, for fonts on macOS.
   community.general.homebrew_tap:
     name: homebrew/cask-fonts
   when: ansible_system == "Darwin"
 
-- name: Ensure Powerline Fonts are installed on OSX.
+- name: Fonts - Ensure Powerline Fonts are installed on macOS.
   block:
     - name: Installing Dependencies - Custom Fonts
       community.general.homebrew_cask:

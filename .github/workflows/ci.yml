@@ -31,9 +31,9 @@ jobs:
 
       - name: Install test dependencies.
         run: |
-          ansible-galaxy install -r requirements.yml
           pip3 install yamllint
           pip3 install ansible-lint
+          ansible-galaxy install -r requirements.yml
 
       - name: Run yamllint.
         run: yamllint .
@@ -52,7 +52,7 @@ jobs:
     strategy:
       matrix:
         os:
-          - macos-11
+          - macos-12
 
     steps:
       - name: Check out the codebase.

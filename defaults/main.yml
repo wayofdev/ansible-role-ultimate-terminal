@@ -4,31 +4,33 @@
 ### Oh-My-Zsh
 ###
 
-omz_git_repository: "https://github.com/ohmyzsh/ohmyzsh.git"
-omz_install_directory: ".oh-my-zsh"
+omz:
+  repository: "https://github.com/ohmyzsh/ohmyzsh.git"
 
-omz_do_zshrc_backup: true
+  install_directory: ".oh-my-zsh"
 
-omz_zshrc_template: "templates/zshrc.j2"
-omz_zshrc_theme: "spaceship"
-omz_zshrc_case_sensitive: false
-omz_zshrc_hyphen_insensitive: false
-omz_zshrc_updates_mode: "auto"  # available: "auto", "disabled", "reminder"
-omz_zshrc_disable_magic_functions: false
-omz_zshrc_disable_ls_colors: false
-omz_zshrc_disable_auto_title: false
-omz_zshrc_enable_correction: false
-omz_zshrc_completion_waiting_dots: true
-omz_zshrc_disable_untracked_files_dirty: false
-omz_zshrc_hist_stamps: "dd.mm.yyyy"
-omz_zshrc_zsh_custom: "$ZSH/custom"
+  backup_old_zshrc: true
 
-omz_zshrc_plugins:
-  - git
-  - zsh-autosuggestions
+  zshrc:
+    theme: "spaceship"
+    case_sensitive: false
+    hyphen_insensitive: false
+    updates_mode: "auto"  # available: "auto", "disabled", "reminder"
+    disable_magic_functions: false
+    disable_ls_colors: false
+    disable_auto_title: false
+    enable_correction: false
+    completion_waiting_dots: true
+    disable_untracked_files_dirty: false
+    hist_stamps: "dd.mm.yyyy"
+    zsh_custom: "$ZSH/custom"
 
-omz_zshrc_user_settings: |
-  source ~/.zsh_menu 2> /dev/null || true
+    plugins:
+      - git
+      - zsh-autosuggestions
+
+    user_settings: |
+      source ~/.zsh_menu 2> /dev/null || true
 
 ###
 ### Spaceship theme for Oh-My-Zsh
@@ -40,16 +42,17 @@ omz_zshrc_user_settings: |
 ### Iterm2
 ###
 
-iterm2_dynamic_profiles:
-  - url: https://raw.githubusercontent.com/lotyp/dotfiles/master/.iterm2/com.googlecode.iterm2.plist
+iterm2:
+  dynamic_profiles:
+    - url: https://raw.githubusercontent.com/lotyp/dotfiles/master/.iterm2/com.googlecode.iterm2.plist
 
-iterm2_profile_directory: "~/.iterm2/"
+  profile_directory: "~/.iterm2/"
 
-# https://iterm2.com/documentation-shell-integration.html
-# iTerm2 may be integrated with the unix shell so that it can keep track
-# of your command history, current working directory, host name, and more — even over ssh.
-# This enables several useful features.
-iterm2_shell_integration: true
+  # https://iterm2.com/documentation-shell-integration.html
+  # iTerm2 may be integrated with the unix shell so that it can keep track
+  # of your command history, current working directory, host name, and more — even over ssh.
+  # This enables several useful features.
+  shell_integration: true
 
-# https://www.nerdfonts.com/
-iterm2_font: font-fira-mono-for-powerline
+  # https://www.nerdfonts.com/
+  font: font-fira-mono-for-powerline

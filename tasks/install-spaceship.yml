@@ -1,11 +1,10 @@
 ---
 
-- name: Establish OhMyZsh custom path.
+- name: Spaceship - Establish OhMyZsh custom path.
   ansible.builtin.set_fact:
     omz_custom_path: "{{ omz_install_path }}/custom"
 
-
-- name: Clone Oh My ZSH repo for user.
+- name: Spaceship - Clone Oh My ZSH repo for user.
   ansible.builtin.git:
     repo: "https://github.com/spaceship-prompt/spaceship-prompt.git"
     dest: "{{ omz_custom_path }}/themes/spaceship-prompt"
@@ -13,7 +12,7 @@
     accept_hostkey: true
     version: "master"
 
-- name: Symlink spaceship.zsh-theme to user oh-my-zsh custom themes directory.
+- name: Spaceship - Symlink spaceship.zsh-theme to user oh-my-zsh custom themes directory.
   ansible.builtin.file:
     src: "{{ omz_custom_path }}/themes/spaceship-prompt/spaceship.zsh-theme"
     dest: "{{ omz_custom_path }}/themes/spaceship.zsh-theme"

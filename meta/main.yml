@@ -3,7 +3,7 @@
 galaxy_info:
   role_name: terminal
   author: lotyp
-  description: Iterm2.app ➞ Zsh ➞ OhMyZsh ➞ Spaceship theme ➞ Plugins
+  description: iTerm2.app ➞ Zsh ➞ OhMyZsh ➞ Spaceship theme ➞ Plugins
   company: wayofdev
 
   license: MIT

@@ -1,6 +1,6 @@
 ---
 
-- name: Installing Iterm2.
+- name: iTerm2 - Installing application using brew.
   community.general.homebrew_cask:
     name: iterm2
     state: installed
@@ -9,7 +9,7 @@
     - Install DynamicRole
     - Integrate Shell
 
-- name: Ensure that iTerm2 DynamicProfiles directory exists.
+- name: iTerm2 - Ensure that DynamicProfiles directory exists.
   ansible.builtin.file:
     path: "{{ iterm2_profile_directory }}"
     state: directory
