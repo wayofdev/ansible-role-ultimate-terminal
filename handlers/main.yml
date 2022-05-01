@@ -18,6 +18,7 @@
         type: bool
         value: true
         state: present
+      listen: Install DynamicRole
 
     - name: iTerm2 - Setting directory "{{ iterm2_profile_directory }}" as source, from where DynamicProfiles will be loaded.
       community.general.osx_defaults:
@@ -26,7 +27,7 @@
         type: string
         value: "{{ iterm2_profile_directory }}"
         state: present
-  listen: Install DynamicRole
+      listen: Install DynamicRole
   when: iterm2_profile_directory is defined and iterm2_profile_directory
 
 - name: iTerm2 - Ensure shell integration is installed.
