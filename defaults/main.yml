@@ -9,6 +9,8 @@ omz:
 
   install_directory: ".oh-my-zsh"
 
+  profile_directory: "~/.iterm2/"
+
   backup_old_zshrc: true
 
   zshrc:

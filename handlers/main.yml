@@ -3,7 +3,7 @@
 - name: DR Handler - Ensure external DynamicProfiles are downloaded to iTerm2 directory.
   ansible.builtin.uri:
     url: "{{ item.url }}"
-    dest: "{{ iterm2_profile_directory }}"
+    dest: "{{ iterm2.profile_directory }}"
   with_items: "{{ iterm2.dynamic_profiles }}"
   listen: Install DynamicRole
   when: iterm2.dynamic_profiles is defined
@@ -20,15 +20,15 @@
         state: present
       listen: Install DynamicRole
 
-    - name: iTerm2 - Setting directory "{{ iterm2_profile_directory }}" as source, from where DynamicProfiles will be loaded.
+    - name: iTerm2 - Setting directory "{{ iterm2.profile_directory }}" as source, from where DynamicProfiles will be loaded.
       community.general.osx_defaults:
         domain: com.googlecode.iterm2
         key: PrefsCustomFolder
         type: string
-        value: "{{ iterm2_profile_directory }}"
+        value: "{{ iterm2.profile_directory }}"
         state: present
       listen: Install DynamicRole
-  when: iterm2_profile_directory is defined and iterm2_profile_directory
+  when: iterm2.profile_directory is defined and iterm2.profile_directory
 
 - name: iTerm2 - Ensure shell integration is installed.
   ansible.builtin.shell: >
