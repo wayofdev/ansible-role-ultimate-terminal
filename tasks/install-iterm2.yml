@@ -11,7 +11,7 @@
 
 - name: iTerm2 - Ensure that DynamicProfiles directory exists.
   ansible.builtin.file:
-    path: "{{ iterm2_profile_directory }}"
+    path: "{{ iterm2.profile_directory }}"
     state: directory
     mode: '0755'
     owner: "{{ remote_regular_user }}"
